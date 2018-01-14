@@ -13,3 +13,10 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+RSpec/ExampleLength:
+  Max: 10
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
