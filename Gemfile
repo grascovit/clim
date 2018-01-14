@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.2'
 
+gem 'bcrypt', '~> 3.1.11'
 gem 'figaro', '~> 1.1.1'
 gem 'pg', '~> 0.21.0'
 gem 'puma', '~> 3.11.0'
