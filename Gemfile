@@ -6,6 +6,7 @@ ruby '2.4.2'
 
 gem 'bcrypt', '~> 3.1.11'
 gem 'figaro', '~> 1.1.1'
+gem 'knock', '~> 2.1.1'
 gem 'pg', '~> 0.21.0'
 gem 'puma', '~> 3.11.0'
 gem 'rack-cors', '~> 1.0.2'
