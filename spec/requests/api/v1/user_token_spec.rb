@@ -23,12 +23,6 @@ module Api
 
       describe 'POST #create' do
         context 'with valid params' do
-          it 'authenticates the user' do
-            expect do
-              post api_v1_user_token_path, params: { auth: valid_params }
-            end.to change(User, :count).by(1)
-          end
-
           it 'returns 201 http status' do
             post api_v1_user_token_path, params: { auth: valid_params }
 
