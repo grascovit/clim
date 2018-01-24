@@ -29,10 +29,10 @@ module Api
             expect(response).to have_http_status(:created)
           end
 
-          it 'returns the created user' do
+          it 'returns the created user and token to authenticate' do
             post api_v1_users_path, params: { user: valid_params }
 
-            expect(response).to match_response_schema('v1/user')
+            expect(response).to match_response_schema('v1/user_token')
           end
         end
 

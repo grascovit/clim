@@ -7,7 +7,7 @@ module Api
         @user = User.new(user_params)
 
         if @user.save
-          render json: @user, status: :created
+          render json: { user: @user, token: token }, status: :created
         else
           render json: @user.errors.full_messages, status: :unprocessable_entity
         end
@@ -23,6 +23,10 @@ module Api
           :password,
           :password_confirmation
         )
+      end
+
+      def token
+        Knock::AuthToken.new(payload: { sub: @user.id }).token
       end
     end
   end
