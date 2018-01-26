@@ -12,6 +12,6 @@ FactoryBot.define do
     country { Faker::Address.country }
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
-    addressable
+    addressable factory: :client
   end
 end
