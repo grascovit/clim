@@ -44,20 +44,16 @@ module Api
           params.require(:client).permit(
             :name,
             :phone,
-            address_attributes: %i[
-              primary_address
-              secondary_address
-              number
-              zip_code
-              neighborhood
-              city
-              state
-              country
-              latitude
-              longitude
-              addressable_type
-            ]
+            address_attributes: address_params
           )
+        end
+
+        def address_params
+          %i[
+            primary_address secondary_address number
+            zip_code neighborhood city state country
+            latitude longitude
+          ]
         end
 
         def set_client

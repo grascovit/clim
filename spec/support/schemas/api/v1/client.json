@@ -1,10 +1,14 @@
 {
   "type": "object",
   "required": [
+    "id",
     "name",
     "phone"
   ],
   "properties": {
+    "id": {
+      "type": "integer"
+    },
     "name": {
       "type": "string"
     },
@@ -12,7 +16,7 @@
       "type": "string"
     },
     "address": {
-      "type": "object",
+      "type": ["null", "object"],
       "required": [
         "id",
         "primary_address",
@@ -53,12 +57,6 @@
         },
         "longitude": {
           "type": "string"
-        },
-        "created_at": {
-          "type": "timestamp"
-        },
-        "updated_at": {
-          "type": "timestamp"
         }
       }
     }
