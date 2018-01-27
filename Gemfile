@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.2'
 
+gem 'active_model_serializers', '~> 0.10.7'
 gem 'bcrypt', '~> 3.1.11'
 gem 'figaro', '~> 1.1.1'
 gem 'knock', '~> 2.1.1'
