@@ -20,3 +20,10 @@ RSpec/ExampleLength:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+
+Metrics/ModuleLength:
+  Exclude:
+    - spec/**/*
+
+Metrics/LineLength:
+  Max: 120

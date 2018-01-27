@@ -6,7 +6,6 @@ module Api
   module V1
     RSpec.describe 'UsersController', type: :request do
       let(:valid_params) { attributes_for(:user) }
-
       let(:invalid_params) do
         {
           first_name: nil,

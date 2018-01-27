@@ -11,10 +11,7 @@
         "id",
         "first_name",
         "last_name",
-        "email",
-        "password_digest",
-        "created_at",
-        "updated_at"
+        "email"
       ],
       "properties": {
         "id": {
@@ -28,20 +25,11 @@
         },
         "email": {
           "type": "string"
-        },
-        "password_digest": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "timestamp"
-        },
-        "updated_at": {
-          "type": "timestamp"
         }
       }
+    },
+    "token": {
+      "type": "string"
     }
-  },
-  "token": {
-    "type": "string"
   }
 }
