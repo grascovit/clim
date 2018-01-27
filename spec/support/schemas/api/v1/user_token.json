@@ -39,9 +39,9 @@
           "type": "timestamp"
         }
       }
+    },
+    "token": {
+      "type": "string"
     }
-  },
-  "token": {
-    "type": "string"
   }
 }

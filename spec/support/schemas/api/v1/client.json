@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "required": [
+    "name",
+    "phone"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "required": [
+        "id",
+        "primary_address",
+        "city",
+        "state",
+        "country"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "primary_address": {
+          "type": "string"
+        },
+        "secondary_address": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "zip_code": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      }
+    }
+  }
+}

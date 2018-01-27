@@ -6,14 +6,12 @@ module Api
   module V1
     RSpec.describe 'UserTokenController', type: :request do
       let(:user) { create(:user) }
-
       let(:valid_params) do
         {
           email: user.email,
           password: user.password
         }
       end
-
       let(:invalid_params) do
         {
           email: 'wrong',
