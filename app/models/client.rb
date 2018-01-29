@@ -2,6 +2,7 @@
 
 class Client < ApplicationRecord
   belongs_to :user
+  has_many :tasks, dependent: :destroy
   has_one :address, as: :addressable, inverse_of: :addressable, dependent: :destroy
 
   validates :name, presence: true
