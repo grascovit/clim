@@ -4,26 +4,30 @@ require 'rails_helper'
 
 module Api
   module V1
-    module Users
-      RSpec.describe 'ClientsController', type: :request do
+    module Clients
+      RSpec.describe 'TasksController', type: :request do
         let(:user) { create(:user) }
-        let(:valid_params) { attributes_for(:client) }
+        let(:client) { create(:client, user: user) }
+        let(:valid_params) { attributes_for(:task) }
         let(:invalid_params) do
           {
-            name: nil,
-            phone: nil
+            title: nil,
+            description: nil,
+            start_at: nil,
+            finish_at: nil,
+            service_fee: nil
           }
         end
 
         describe 'GET #index' do
           before do
-            get api_v1_user_clients_path(user),
+            get api_v1_client_tasks_path(client),
                 headers: authenticated_header(user)
           end
 
-          context 'when user has clients' do
-            it 'returns user clients list' do
-              expect(response).to match_response_schema('v1/clients')
+          context 'when the client has tasks' do
+            it 'returns client tasks list' do
+              expect(response).to match_response_schema('v1/tasks')
             end
 
             it 'returns 200 http status' do
@@ -31,7 +35,7 @@ module Api
             end
           end
 
-          context 'when user does not have clients' do
+          context 'when client does not have tasks' do
             it 'returns an empty list' do
               expect(JSON.parse(response.body)).to eq([])
             end
@@ -43,16 +47,16 @@ module Api
         end
 
         describe 'GET #show' do
-          context 'when the requested client exists' do
-            let(:client) { create(:client, user: user) }
+          context 'when the requested task exists' do
+            let(:task) { create(:task, client: client) }
 
             before do
-              get api_v1_user_client_path(user, client),
+              get api_v1_client_task_path(client, task),
                   headers: authenticated_header(user)
             end
 
-            it 'returns the client' do
-              expect(response).to match_response_schema('v1/client')
+            it 'returns the task' do
+              expect(response).to match_response_schema('v1/task')
             end
 
             it 'returns 200 http status' do
@@ -60,12 +64,12 @@ module Api
             end
           end
 
-          context 'when the requested client does not belong to current user' do
-            let(:client) { create(:client) }
+          context 'when the requested task does not belong to current user' do
+            let(:task) { create(:task) }
 
             it 'raises not found exception' do
               expect do
-                get api_v1_user_client_path(user, client),
+                get api_v1_client_task_path(client, task),
                     headers: authenticated_header(user)
               end.to raise_error(ActiveRecord::RecordNotFound)
             end
@@ -74,57 +78,58 @@ module Api
 
         describe 'POST #create' do
           context 'with valid params' do
-            it 'creates a new client' do
+            it 'creates a new task' do
               expect do
-                post api_v1_user_clients_path(user),
+                post api_v1_client_tasks_path(client),
                      headers: authenticated_header(user),
-                     params: { client: valid_params }
+                     params: { task: valid_params }
               end.to change(Client, :count).by(1)
             end
 
             it 'returns 201 http status' do
-              post api_v1_user_clients_path(user),
+              post api_v1_client_tasks_path(client),
                    headers: authenticated_header(user),
-                   params: { client: valid_params }
+                   params: { task: valid_params }
 
               expect(response).to have_http_status(:created)
             end
 
-            it 'returns the created client' do
-              post api_v1_user_clients_path(user),
+            it 'returns the created task' do
+              post api_v1_client_tasks_path(client),
                    headers: authenticated_header(user),
-                   params: { client: valid_params }
+                   params: { task: valid_params }
 
-              expect(response).to match_response_schema('v1/client')
+              expect(response).to match_response_schema('v1/task')
             end
           end
 
           context 'with invalid params' do
-            it 'does not create a new client' do
+            it 'does not create a new task' do
               expect do
-                post api_v1_user_clients_path(user),
+                post api_v1_client_tasks_path(client),
                      headers: authenticated_header(user),
-                     params: { client: invalid_params }
-              end.not_to change(Client, :count)
+                     params: { task: invalid_params }
+              end.not_to change(Task, :count)
             end
 
             it 'returns 422 http status' do
-              post api_v1_user_clients_path(user),
+              post api_v1_client_tasks_path(client),
                    headers: authenticated_header(user),
-                   params: { client: invalid_params }
+                   params: { task: invalid_params }
 
               expect(response).to have_http_status(:unprocessable_entity)
             end
 
-            it 'returns the client errors' do
-              post api_v1_user_clients_path(user),
+            it 'returns the task errors' do
+              post api_v1_client_tasks_path(client),
                    headers: authenticated_header(user),
-                   params: { client: invalid_params }
+                   params: { task: invalid_params }
 
               expect(JSON.parse(response.body)).to match_array(
                 [
-                  "Name can't be blank",
-                  "Phone can't be blank"
+                  "Title can't be blank",
+                  "Start at can't be blank",
+                  "Service fee can't be blank"
                 ]
               )
             end
@@ -132,107 +137,108 @@ module Api
         end
 
         describe 'PUT/PATCH #update' do
-          let(:client) { create(:client, user: user) }
+          let(:task) { create(:task, client: client) }
 
           context 'with valid params' do
             let(:new_params) do
               {
-                name: 'Client name',
-                phone: '+5562909203912'
+                title: 'Task title',
+                service_fee: 300.50
               }
             end
 
             before do
-              put api_v1_user_client_path(user, client),
+              put api_v1_client_task_path(client, task),
                   headers: authenticated_header(user),
-                  params: { client: new_params }
+                  params: { task: new_params }
             end
 
-            it 'updates client data' do
-              client.reload
+            it 'updates task data' do
+              task.reload
 
-              expect(client.name).to eq(new_params[:name])
+              expect(task.title).to eq(new_params[:title])
             end
 
             it 'returns 200 http status' do
               expect(response).to have_http_status(:ok)
             end
 
-            it 'returns the updated client' do
-              expect(response).to match_response_schema('v1/client')
+            it 'returns the updated task' do
+              expect(response).to match_response_schema('v1/task')
             end
           end
 
           context 'with invalid params' do
-            it 'does not update client data' do
+            it 'does not update task data' do
               expect do
-                put api_v1_user_client_path(user, client),
+                put api_v1_client_task_path(client, task),
                     headers: authenticated_header(user),
-                    params: { client: invalid_params }
-                client.reload
-              end.not_to change(client, :name)
+                    params: { task: invalid_params }
+                task.reload
+              end.not_to change(task, :title)
             end
 
             it 'returns 422 http status' do
-              put api_v1_user_client_path(user, client),
+              put api_v1_client_task_path(client, task),
                   headers: authenticated_header(user),
-                  params: { client: invalid_params }
+                  params: { task: invalid_params }
 
               expect(response).to have_http_status(:unprocessable_entity)
             end
 
-            it 'returns the client errors' do
-              put api_v1_user_client_path(user, client),
+            it 'returns the task errors' do
+              put api_v1_client_task_path(client, task),
                   headers: authenticated_header(user),
-                  params: { client: invalid_params }
+                  params: { task: invalid_params }
 
               expect(JSON.parse(response.body)).to match_array(
                 [
-                  "Name can't be blank",
-                  "Phone can't be blank"
+                  "Title can't be blank",
+                  "Start at can't be blank",
+                  "Service fee can't be blank"
                 ]
               )
             end
           end
 
-          context 'when client does not belong to current user' do
-            let(:another_client) { create(:client) }
+          context 'when task does not belong to current user' do
+            let(:another_task) { create(:task) }
 
             it 'raises not found exception' do
               expect do
-                put api_v1_user_client_path(user, another_client),
+                put api_v1_client_task_path(client, another_task),
                     headers: authenticated_header(user),
-                    params: { client: valid_params }
+                    params: { task: valid_params }
               end.to raise_error(ActiveRecord::RecordNotFound)
             end
           end
         end
 
         describe 'DELETE #destroy' do
-          context 'when client belongs to current user' do
-            let!(:client) { create(:client, user: user) }
+          context 'when task belongs to current user' do
+            let!(:task) { create(:task, client: client) }
 
-            it 'deletes the client' do
+            it 'deletes the task' do
               expect do
-                delete api_v1_user_client_path(user, client),
+                delete api_v1_client_task_path(client, task),
                        headers: authenticated_header(user)
-              end.to change(Client, :count).by(-1)
+              end.to change(Task, :count).by(-1)
             end
 
             it 'returns 204 http status' do
-              delete api_v1_user_client_path(user, client),
+              delete api_v1_client_task_path(client, task),
                      headers: authenticated_header(user)
 
               expect(response).to have_http_status(:no_content)
             end
           end
 
-          context 'when client does not belong to current user' do
-            let!(:another_client) { create(:client) }
+          context 'when task does not belong to current user' do
+            let!(:another_task) { create(:task) }
 
             it 'raises not found exception' do
               expect do
-                delete api_v1_user_client_path(user, another_client),
+                delete api_v1_client_task_path(client, another_task),
                        headers: authenticated_header(user)
               end.to raise_error(ActiveRecord::RecordNotFound)
             end
