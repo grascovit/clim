@@ -7,6 +7,7 @@ ruby '2.4.2'
 gem 'active_model_serializers', '~> 0.10.7'
 gem 'bcrypt', '~> 3.1.11'
 gem 'figaro', '~> 1.1.1'
+gem 'kaminari', '~> 1.1.1'
 gem 'knock', '~> 2.1.1'
 gem 'pg', '~> 0.21.0'
 gem 'puma', '~> 3.11.0'
@@ -18,7 +19,6 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.8.2'
   gem 'faker', '~> 1.8.7'
   gem 'rspec-rails', '~> 3.7.2'
-  gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.52.1', require: false
   gem 'rubocop-rspec', '~> 1.21.0'
 end
