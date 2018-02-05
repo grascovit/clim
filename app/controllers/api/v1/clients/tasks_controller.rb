@@ -8,7 +8,9 @@ module Api
         before_action :set_task, only: %i[show update destroy]
 
         def index
-          render json: @client.tasks, status: :ok
+          @tasks = @client.tasks.sorted_by_start_at.page(params[:page]).per(20)
+
+          render json: @tasks, status: :ok
         end
 
         def show

@@ -8,6 +8,8 @@ class Task < ApplicationRecord
   validates :service_fee, presence: true
   validate :finish_is_before_start
 
+  scope :sorted_by_start_at, -> { order(start_at: :asc) }
+
   private
 
   def finish_is_before_start
