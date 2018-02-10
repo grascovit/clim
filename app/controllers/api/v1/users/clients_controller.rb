@@ -7,7 +7,10 @@ module Api
         before_action :set_client, only: %i[destroy show update]
 
         def index
-          @clients = current_user.clients.includes(:address).sorted_by_name.page(params[:page]).per(20)
+          @clients = current_user.clients.includes(:address)
+                                 .sorted_by_name
+                                 .page(params[:page])
+                                 .per(20)
 
           render json: @clients, status: :ok
         end

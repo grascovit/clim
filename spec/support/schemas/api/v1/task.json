@@ -4,7 +4,8 @@
     "id",
     "title",
     "start_at",
-    "service_fee"
+    "service_fee",
+    "client"
   ],
   "properties": {
     "id": {
@@ -14,16 +15,25 @@
       "type": "string"
     },
     "description": {
-      "type": ["null", "string"]
+      "type": [
+        "null",
+        "string"
+      ]
     },
     "start_at": {
       "type": "timestamp"
     },
     "finish_at": {
-      "type": ["null", "timestamp"]
+      "type": [
+        "null",
+        "timestamp"
+      ]
     },
     "service_fee": {
       "type": "decimal"
+    },
+    "client": {
+      "$ref": "client.json"
     }
   }
 }

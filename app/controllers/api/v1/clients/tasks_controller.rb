@@ -8,20 +8,23 @@ module Api
         before_action :set_task, only: %i[show update destroy]
 
         def index
-          @tasks = @client.tasks.sorted_by_start_at.page(params[:page]).per(20)
+          @tasks = @client.tasks.includes(:client, client: :address)
+                          .sorted_by_start_at
+                          .page(params[:page])
+                          .per(20)
 
-          render json: @tasks, status: :ok
+          render json: @tasks, status: :ok, include: ['client.address']
         end
 
         def show
-          render json: @task, status: :ok
+          render json: @task, status: :ok, include: ['client.address']
         end
 
         def create
           @task = @client.tasks.new(task_params)
 
           if @task.save
-            render json: @task, status: :created
+            render json: @task, status: :created, include: ['client.address']
           else
             render json: @task.errors.full_messages, status: :unprocessable_entity
           end
@@ -29,7 +32,7 @@ module Api
 
         def update
           if @task.update(task_params)
-            render json: @task, status: :ok
+            render json: @task, status: :ok, include: ['client.address']
           else
             render json: @task.errors.full_messages, status: :unprocessable_entity
           end

@@ -1,4 +1,6 @@
 {
   "type": "array",
-  "items": { "$ref": "client.json" }
+  "items": {
+    "$ref": "client.json"
+  }
 }
