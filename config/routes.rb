@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       end
       resources :users, only: :create do
         resources :clients, module: :users
+        resources :tasks, only: :index, module: :users
       end
       resource :user_token, only: :create, controller: :user_token
     end
