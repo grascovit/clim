@@ -9,4 +9,6 @@ class Client < ApplicationRecord
   validates :phone, presence: true
 
   accepts_nested_attributes_for :address
+
+  scope :sorted_by_name, -> { order(name: :asc) }
 end

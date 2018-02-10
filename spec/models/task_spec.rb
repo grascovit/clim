@@ -13,6 +13,18 @@ RSpec.describe Task, type: :model do
     it { is_expected.to validate_presence_of(:service_fee) }
   end
 
+  describe 'scopes' do
+    describe '.sorted_by_start_at' do
+      it 'returns the tasks sorted by ascending start at' do
+        task_a = create(:task, start_at: 1.day.from_now, finish_at: 2.days.from_now)
+        task_b = create(:task, start_at: 3.days.from_now, finish_at: 4.days.from_now)
+        task_c = create(:task, start_at: 7.days.from_now, finish_at: 8.days.from_now)
+
+        expect(Task.sorted_by_start_at).to eq([task_a, task_b, task_c])
+      end
+    end
+  end
+
   describe '#finish_is_before_start' do
     context 'when finish is before start' do
       it 'adds error to task model' do

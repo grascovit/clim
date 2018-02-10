@@ -1,4 +1,6 @@
 {
   "type": "array",
-  "items": { "$ref": "task.json" }
+  "items": {
+    "$ref": "task.json"
+  }
 }
