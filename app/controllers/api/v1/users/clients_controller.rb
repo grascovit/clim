@@ -3,7 +3,7 @@
 module Api
   module V1
     module Users
-      class ClientsController < ApplicationController
+      class ClientsController < ApiController
         before_action :set_client, only: %i[destroy show update]
 
         def index

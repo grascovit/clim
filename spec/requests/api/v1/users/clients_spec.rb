@@ -16,12 +16,14 @@ module Api
         end
 
         describe 'GET #index' do
-          before do
-            get api_v1_user_clients_path(user),
-                headers: authenticated_header(user)
-          end
-
           context 'when user has clients' do
+            before do
+              create(:client, user: user)
+
+              get api_v1_user_clients_path(user),
+                  headers: authenticated_header(user)
+            end
+
             it 'returns user clients list' do
               expect(response).to match_response_schema('v1/clients')
             end
@@ -32,6 +34,11 @@ module Api
           end
 
           context 'when user does not have clients' do
+            before do
+              get api_v1_user_clients_path(user),
+                  headers: authenticated_header(user)
+            end
+
             it 'returns an empty list' do
               expect(JSON.parse(response.body)).to eq([])
             end

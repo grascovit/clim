@@ -20,12 +20,14 @@ module Api
         end
 
         describe 'GET #index' do
-          before do
-            get api_v1_client_tasks_path(client),
-                headers: authenticated_header(user)
-          end
-
           context 'when the client has tasks' do
+            before do
+              create(:task, client: client)
+
+              get api_v1_client_tasks_path(client),
+                  headers: authenticated_header(user)
+            end
+
             it 'returns client tasks list' do
               expect(response).to match_response_schema('v1/tasks')
             end
@@ -36,6 +38,11 @@ module Api
           end
 
           context 'when client does not have tasks' do
+            before do
+              get api_v1_client_tasks_path(client),
+                  headers: authenticated_header(user)
+            end
+
             it 'returns an empty list' do
               expect(JSON.parse(response.body)).to eq([])
             end

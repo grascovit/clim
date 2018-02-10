@@ -3,7 +3,7 @@
 module Api
   module V1
     module Clients
-      class TasksController < ApplicationController
+      class TasksController < ApiController
         before_action :set_client
         before_action :set_task, only: %i[show update destroy]
 
