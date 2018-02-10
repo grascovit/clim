@@ -10,7 +10,7 @@ gem 'figaro', '~> 1.1.1'
 gem 'kaminari', '~> 1.1.1'
 gem 'knock', '~> 2.1.1'
 gem 'pg', '~> 0.21.0'
-gem 'puma', '~> 3.11.0'
+gem 'puma', '~> 3.11.2'
 gem 'rack-cors', '~> 1.0.2'
 gem 'rails', '~> 5.1.4'
 
@@ -20,13 +20,13 @@ group :development, :test do
   gem 'faker', '~> 1.8.7'
   gem 'rspec-rails', '~> 3.7.2'
   gem 'rubocop', '~> 0.52.1', require: false
-  gem 'rubocop-rspec', '~> 1.21.0'
+  gem 'rubocop-rspec', '~> 1.22.2'
 end
 
 group :development do
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 group :test do
