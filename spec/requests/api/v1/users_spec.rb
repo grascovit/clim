@@ -53,10 +53,10 @@ module Api
 
             expect(JSON.parse(response.body)).to match_array(
               [
-                "First name can't be blank",
-                "Email can't be blank",
-                "Password can't be blank",
-                'Password is too short (minimum is 6 characters)'
+                'Nome não pode ficar em branco',
+                'Email não pode ficar em branco',
+                'Senha não pode ficar em branco',
+                'Senha é muito curto (mínimo: 6 caracteres)'
               ]
             )
           end

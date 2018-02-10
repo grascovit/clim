@@ -13,5 +13,7 @@ module Clim
   class Application < Rails::Application
     config.load_defaults 5.1
     config.api_only = true
+    config.i18n.available_locales = [:en, 'pt-BR']
+    config.i18n.default_locale = 'pt-BR'
   end
 end

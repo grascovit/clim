@@ -130,8 +130,8 @@ module Api
 
               expect(JSON.parse(response.body)).to match_array(
                 [
-                  "Name can't be blank",
-                  "Phone can't be blank"
+                  'Nome não pode ficar em branco',
+                  'Telefone não pode ficar em branco'
                 ]
               )
             end
@@ -195,8 +195,8 @@ module Api
 
               expect(JSON.parse(response.body)).to match_array(
                 [
-                  "Name can't be blank",
-                  "Phone can't be blank"
+                  'Nome não pode ficar em branco',
+                  'Telefone não pode ficar em branco'
                 ]
               )
             end
