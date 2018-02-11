@@ -1,0 +1,4 @@
+pt-BR:
+  controllers:
+    internal_server_error: "Ocorreu um erro na requisição. Não se preocupe, nossa equipe já foi avisada."
+    record_not_found: "Recurso não encontrado."

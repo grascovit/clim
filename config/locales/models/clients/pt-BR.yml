@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      client: "Cliente"
+    attributes:
+      client:
+        name: "Nome"
+        phone: "Telefone"
+        user: "Usuário"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"

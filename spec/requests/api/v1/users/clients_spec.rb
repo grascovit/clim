@@ -70,11 +70,11 @@ module Api
           context 'when the requested client does not belong to current user' do
             let(:client) { create(:client) }
 
-            it 'raises not found exception' do
-              expect do
-                get api_v1_user_client_path(user, client),
-                    headers: authenticated_header(user)
-              end.to raise_error(ActiveRecord::RecordNotFound)
+            it 'returns not found message' do
+              get api_v1_user_client_path(user, client),
+                  headers: authenticated_header(user)
+
+              expect(JSON.parse(response.body)['message']).to eq(I18n.t('controllers.record_not_found'))
             end
           end
         end
@@ -205,12 +205,12 @@ module Api
           context 'when client does not belong to current user' do
             let(:another_client) { create(:client) }
 
-            it 'raises not found exception' do
-              expect do
-                put api_v1_user_client_path(user, another_client),
-                    headers: authenticated_header(user),
-                    params: { client: valid_params }
-              end.to raise_error(ActiveRecord::RecordNotFound)
+            it 'returns not found message' do
+              put api_v1_user_client_path(user, another_client),
+                  headers: authenticated_header(user),
+                  params: { client: valid_params }
+
+              expect(JSON.parse(response.body)['message']).to eq(I18n.t('controllers.record_not_found'))
             end
           end
         end
@@ -237,11 +237,11 @@ module Api
           context 'when client does not belong to current user' do
             let!(:another_client) { create(:client) }
 
-            it 'raises not found exception' do
-              expect do
-                delete api_v1_user_client_path(user, another_client),
-                       headers: authenticated_header(user)
-              end.to raise_error(ActiveRecord::RecordNotFound)
+            it 'returns not found message' do
+              delete api_v1_user_client_path(user, another_client),
+                     headers: authenticated_header(user)
+
+              expect(JSON.parse(response.body)['message']).to eq(I18n.t('controllers.record_not_found'))
             end
           end
         end
