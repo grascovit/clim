@@ -15,6 +15,6 @@ class Task < ApplicationRecord
   def finish_is_before_start
     return unless start_at && finish_at
 
-    errors.add(:finish_at, "can't be before the start") if finish_at < start_at
+    errors.add(:finish_at, :finish_before_start) if finish_at < start_at
   end
 end

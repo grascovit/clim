@@ -31,7 +31,11 @@ RSpec.describe Task, type: :model do
         task = build(:task, start_at: 1.day.from_now, finish_at: 1.day.ago)
         task.valid?
 
-        expect(task.errors.full_messages).to eq(["Finish at can't be before the start"])
+        expect(task.errors.full_messages).to eq(
+          [
+            'Horário de término não pode ser anterior ao horário de início'
+          ]
+        )
       end
     end
 

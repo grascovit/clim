@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    errors:
+      models:
+        task:
+          finish_before_start: "can't be before the start"
