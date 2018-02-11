@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    models:
+      address: "Endereço"
+    attributes:
+      address:
+        primary_address: "Endereço"
+        secondary_address: "Complemento"
+        number: "Número"
+        zip_code: "CEP"
+        neighborhood: "Bairro"
+        city: "Cidade"
+        state: "Estado"
+        country: "País"
+        latitude: "Latitude"
+        longitude: "Longitude"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"

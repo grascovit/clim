@@ -1,0 +1,4 @@
+en:
+  controllers:
+    internal_server_error: "Something went wrong. Don't worry, our team has already been notified."
+    record_not_found: "Resource not found."

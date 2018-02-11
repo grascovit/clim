@@ -74,11 +74,11 @@ module Api
           context 'when the requested task does not belong to current user' do
             let(:task) { create(:task) }
 
-            it 'raises not found exception' do
-              expect do
-                get api_v1_client_task_path(client, task),
-                    headers: authenticated_header(user)
-              end.to raise_error(ActiveRecord::RecordNotFound)
+            it 'returns not found message' do
+              get api_v1_client_task_path(client, task),
+                  headers: authenticated_header(user)
+
+              expect(JSON.parse(response.body)['message']).to eq(I18n.t('controllers.record_not_found'))
             end
           end
         end
@@ -211,12 +211,12 @@ module Api
           context 'when task does not belong to current user' do
             let(:another_task) { create(:task) }
 
-            it 'raises not found exception' do
-              expect do
-                put api_v1_client_task_path(client, another_task),
-                    headers: authenticated_header(user),
-                    params: { task: valid_params }
-              end.to raise_error(ActiveRecord::RecordNotFound)
+            it 'returns not found message' do
+              put api_v1_client_task_path(client, another_task),
+                  headers: authenticated_header(user),
+                  params: { task: valid_params }
+
+              expect(JSON.parse(response.body)['message']).to eq(I18n.t('controllers.record_not_found'))
             end
           end
         end
@@ -243,11 +243,11 @@ module Api
           context 'when task does not belong to current user' do
             let!(:another_task) { create(:task) }
 
-            it 'raises not found exception' do
-              expect do
-                delete api_v1_client_task_path(client, another_task),
-                       headers: authenticated_header(user)
-              end.to raise_error(ActiveRecord::RecordNotFound)
+            it 'returns not found message' do
+              delete api_v1_client_task_path(client, another_task),
+                     headers: authenticated_header(user)
+
+              expect(JSON.parse(response.body)['message']).to eq(I18n.t('controllers.record_not_found'))
             end
           end
         end
