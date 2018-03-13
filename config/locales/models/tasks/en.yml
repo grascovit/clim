@@ -4,3 +4,9 @@ en:
       models:
         task:
           finish_before_start: "can't be before the start"
+        user:
+          financial_documents_missing: "You need to provide either CPF or CNPJ"
+    attributes:
+      user:
+        cpf: "CPF"
+        cnpj: "CNPJ"

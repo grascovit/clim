@@ -6,5 +6,7 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
     password { Faker::Internet.password }
+    cpf { Faker::Number.number(11) }
+    cnpj { Faker::Number.number(14) }
   end
 end
