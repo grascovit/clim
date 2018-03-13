@@ -56,7 +56,8 @@ module Api
                 'Nome não pode ficar em branco',
                 'Email não pode ficar em branco',
                 'Senha não pode ficar em branco',
-                'Senha é muito curto (mínimo: 6 caracteres)'
+                'Senha é muito curto (mínimo: 6 caracteres)',
+                'Você precisa informar CPF ou CNPJ'
               ]
             )
           end

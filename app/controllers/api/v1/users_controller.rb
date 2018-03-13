@@ -23,7 +23,9 @@ module Api
           :last_name,
           :email,
           :password,
-          :password_confirmation
+          :password_confirmation,
+          :cpf,
+          :cnpj
         )
       end
 
