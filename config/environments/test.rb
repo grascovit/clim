@@ -34,4 +34,12 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Install the Timber.io logger
+  # ----------------------------
+  # `nil` is passed to disable logging. It's important to keep the `Timber::Logger`
+  # because it provides an API for logging structured data and capturing context.
+  logger = Timber::Logger.new(nil)
+  logger.level = config.log_level
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 end

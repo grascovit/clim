@@ -14,6 +14,7 @@ gem 'puma', '~> 3.11.2'
 gem 'rack-cors', '~> 1.0.2'
 gem 'rails', '~> 5.1.4'
 gem 'rails-i18n', '~> 5.0.4'
+gem 'timber', '~> 2.6.2'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
