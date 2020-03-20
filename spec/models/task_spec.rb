@@ -20,7 +20,7 @@ RSpec.describe Task, type: :model do
         task_b = create(:task, start_at: 3.days.from_now, finish_at: 4.days.from_now)
         task_c = create(:task, start_at: 7.days.from_now, finish_at: 8.days.from_now)
 
-        expect(Task.sorted_by_start_at).to eq([task_a, task_b, task_c])
+        expect(described_class.sorted_by_start_at).to eq([task_a, task_b, task_c])
       end
     end
   end
