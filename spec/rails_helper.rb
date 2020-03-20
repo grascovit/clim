@@ -2,7 +2,9 @@
 
 require 'simplecov'
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter 'config'
+end
 SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
 
 require 'spec_helper'

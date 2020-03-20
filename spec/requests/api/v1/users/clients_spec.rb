@@ -25,7 +25,7 @@ module Api
             end
 
             it 'returns user clients list' do
-              expect(response).to match_response_schema('v1/clients')
+              expect(response).to match_json_schema('v1/clients')
             end
 
             it 'returns 200 http status' do
@@ -59,7 +59,7 @@ module Api
             end
 
             it 'returns the client' do
-              expect(response).to match_response_schema('v1/client')
+              expect(response).to match_json_schema('v1/client')
             end
 
             it 'returns 200 http status' do
@@ -102,7 +102,7 @@ module Api
                    headers: authenticated_header(user),
                    params: { client: valid_params }
 
-              expect(response).to match_response_schema('v1/client')
+              expect(response).to match_json_schema('v1/client')
             end
           end
 
@@ -166,7 +166,7 @@ module Api
             end
 
             it 'returns the updated client' do
-              expect(response).to match_response_schema('v1/client')
+              expect(response).to match_json_schema('v1/client')
             end
           end
 

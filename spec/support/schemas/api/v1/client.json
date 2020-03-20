@@ -1,4 +1,5 @@
 {
+  "id": "file:/client.json#",
   "type": "object",
   "required": [
     "id",
@@ -16,7 +17,7 @@
       "type": "string"
     },
     "address": {
-      "$ref": "address.json"
+      "$ref": "file:/address.json#"
     }
   }
 }

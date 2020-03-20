@@ -19,7 +19,7 @@ module Api
             end
 
             it 'returns user tasks list' do
-              expect(response).to match_response_schema('v1/tasks')
+              expect(response).to match_json_schema('v1/tasks')
             end
 
             it 'returns 200 http status' do

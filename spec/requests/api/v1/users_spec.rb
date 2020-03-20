@@ -31,7 +31,7 @@ module Api
           it 'returns the created user and token to authenticate' do
             post api_v1_users_path, params: { user: valid_params }
 
-            expect(response).to match_response_schema('v1/user_token')
+            expect(response).to match_json_schema('v1/user_token')
           end
         end
 

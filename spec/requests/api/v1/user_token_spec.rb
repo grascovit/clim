@@ -30,7 +30,7 @@ module Api
           it 'returns a json with user and token' do
             post api_v1_user_token_path, params: { auth: valid_params }
 
-            expect(response).to match_response_schema('v1/user_token')
+            expect(response).to match_json_schema('v1/user_token')
           end
         end
 

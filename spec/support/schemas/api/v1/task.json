@@ -1,4 +1,5 @@
 {
+  "id": "file:/task.json#",
   "type": "object",
   "required": [
     "id",
@@ -21,19 +22,19 @@
       ]
     },
     "start_at": {
-      "type": "timestamp"
+      "type": "string"
     },
     "finish_at": {
       "type": [
         "null",
-        "timestamp"
+        "string"
       ]
     },
     "service_fee": {
-      "type": "decimal"
+      "type": "string"
     },
     "client": {
-      "$ref": "client.json"
+      "$ref": "file:/client.json#"
     }
   }
 }

@@ -29,7 +29,7 @@ module Api
             end
 
             it 'returns client tasks list' do
-              expect(response).to match_response_schema('v1/tasks')
+              expect(response).to match_json_schema('v1/tasks')
             end
 
             it 'returns 200 http status' do
@@ -63,7 +63,7 @@ module Api
             end
 
             it 'returns the task' do
-              expect(response).to match_response_schema('v1/task')
+              expect(response).to match_json_schema('v1/task')
             end
 
             it 'returns 200 http status' do
@@ -106,7 +106,7 @@ module Api
                    headers: authenticated_header(user),
                    params: { task: valid_params }
 
-              expect(response).to match_response_schema('v1/task')
+              expect(response).to match_json_schema('v1/task')
             end
           end
 
@@ -171,7 +171,7 @@ module Api
             end
 
             it 'returns the updated task' do
-              expect(response).to match_response_schema('v1/task')
+              expect(response).to match_json_schema('v1/task')
             end
           end
 
