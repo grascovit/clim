@@ -22,7 +22,7 @@ RSpec.describe Client, type: :model do
         client_b = create(:client, name: 'B')
         client_c = create(:client, name: 'C')
 
-        expect(Client.sorted_by_name).to eq([client_a, client_b, client_c])
+        expect(described_class.sorted_by_name).to eq([client_a, client_b, client_c])
       end
     end
   end

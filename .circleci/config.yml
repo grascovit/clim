@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.2
+      - image: circleci/ruby:2.6.3
         environment:
           PGHOST: 127.0.0.1
           PGUSER: clim
@@ -10,7 +10,7 @@ jobs:
       - image: circleci/postgres:9.5
         environment:
           POSTGRES_USER: clim
-          POSTGRES_PASSWORD: clim          
+          POSTGRES_PASSWORD: clim
           POSTGRES_DB: clim_test
 
     working_directory: ~/repo
@@ -34,7 +34,7 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-        
+
       # Database setup
       - run: bundle exec rake db:drop && bundle exec rake db:create && bundle exec rake db:migrate
 
