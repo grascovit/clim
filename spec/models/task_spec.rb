@@ -10,7 +10,6 @@ RSpec.describe Task, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:start_at) }
-    it { is_expected.to validate_presence_of(:service_fee) }
   end
 
   describe 'scopes' do

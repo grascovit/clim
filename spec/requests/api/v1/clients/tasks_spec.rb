@@ -135,8 +135,7 @@ module Api
               expect(JSON.parse(response.body)).to match_array(
                 [
                   'Título não pode ficar em branco',
-                  'Horário de início não pode ficar em branco',
-                  'Preço não pode ficar em branco'
+                  'Horário de início não pode ficar em branco'
                 ]
               )
             end
@@ -201,8 +200,7 @@ module Api
               expect(JSON.parse(response.body)).to match_array(
                 [
                   'Título não pode ficar em branco',
-                  'Horário de início não pode ficar em branco',
-                  'Preço não pode ficar em branco'
+                  'Horário de início não pode ficar em branco'
                 ]
               )
             end
